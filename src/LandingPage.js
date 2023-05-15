@@ -1,13 +1,33 @@
+// import React from 'react';
+// import { Link } from 'wouter';
+// import './LandingPage.css';
+
+// function LandingPage() {
+//   return (
+//     <div className="container">
+//       <h1 className="title">Manifest Monkey</h1>
+//       <div className="landing-links">
+//         <Link className="link" href="/argo-app-manifest">Argo App Manifest</Link>
+//         <Link className="link" href="/cluster-manifest">Cluster Manifest</Link>
+//         <Link className="link" href="/argo-project">Argo Project Manifest</Link>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default LandingPage;
 import React from 'react';
+import { Link } from 'wouter';
+import './LandingPage.css';
 
 function LandingPage() {
   return (
     <div className="container">
-      <h1>Argo Manifest Generator</h1>
+      <h1 className="title animated-title">Manifest Monkey</h1>
       <div className="landing-links">
-        <a href="#generate-form" target="_blank">Generate Argo App Manifest</a>
-        <a href="#generate-cluster-form" target="_blank">Generate Cluster Manifest</a>
-        <a href="#generate-project-form" target="_blank">Generate Argo Project</a>
+        <Link className="link" href="/argo-app-manifest">Argo App Manifest</Link>
+        <Link className="link" href="/cluster-manifest">Cluster Manifest</Link>
+        <Link className="link" href="/argo-project">Argo Project Manifest</Link>
       </div>
     </div>
   );
