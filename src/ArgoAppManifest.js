@@ -16,6 +16,10 @@ function ArgoAppManifest() {
   const [eksClusterName, setEKSClusterName] = useState("");
   const [namespace, setNamespace] = useState("");
 
+  // Dropdown options
+  const envShortOptions = ["d", "s", "u", "q", "p", "m"];
+  const argoEnvOptions = ["prod", "nonprod"];
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setOutput(`apiVersion: argoproj.io/v1alpha1
@@ -31,9 +35,6 @@ spec:
     repoURL: git@bitbucket.org:${repoName}.git
     targetRevision: ${repoBranch}
     path: ${helmChartName}
-  destination:
-    namespace: ${namespace}
-    server: https://kubernetes.default.svc
   syncPolicy:
     automated:
       prune: true
@@ -71,18 +72,24 @@ spec:
 
   return (
     <div className="container">
-      <h1>Generate Argo Project Manifest</h1>
+      <h1>Generate Argo Application Manifest</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="argoEnv">Argo Env:</label>
-          <input
-            type="text"
+          <select
             id="argoEnv"
             value={argoEnv}
             onChange={(e) => setArgoEnv(e.target.value)}
             className="form-control"
             required
-          />
+          >
+            <option value="">Select an option</option>
+            {argoEnvOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="form-group">
           <label htmlFor="appFullName">App Full Name:</label>
@@ -185,14 +192,20 @@ spec:
         </div>
         <div className="form-group">
           <label htmlFor="envShort">Environment Short:</label>
-          <input
-            type="text"
+          <select
             id="envShort"
             value={envShort}
             onChange={(e) => setEnvShort(e.target.value)}
             className="form-control"
             required
-          />
+          >
+            <option value="">Select an option</option>
+            {envShortOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="form-group">
           <label htmlFor="helmChartName">Helm Chart Name:</label>

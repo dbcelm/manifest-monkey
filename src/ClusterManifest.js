@@ -35,7 +35,7 @@ resource "kubernetes_secret" "add_eks_cluster_${eksClusterName}" {
         }
         })
     }
-    }`);
+}`);
   };
 
   const handleCopy = (e) => {
@@ -46,7 +46,7 @@ resource "kubernetes_secret" "add_eks_cluster_${eksClusterName}" {
 
   return (
     <div className="container">
-      <h1>Generate Argo Project Manifest</h1>
+      <h1>Generate Argo Cluster Manifest</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="argoIamRole">Argo IAM Role Name:</label>

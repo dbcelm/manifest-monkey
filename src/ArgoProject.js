@@ -8,6 +8,8 @@ function ArgoProject() {
   const [repoName, setRepoName] = useState("");
   const [output, setOutput] = useState("");
 
+  const argoEnvOptions = ["prod", "nonprod"];
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setOutput(`apiVersion: argoproj.io/v1alpha1
@@ -42,14 +44,20 @@ spec:
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="argoEnv">Argo Env:</label>
-          <input
-            type="text"
+          <select
             id="argoEnv"
             value={argoEnv}
             onChange={(e) => setArgoEnv(e.target.value)}
             className="form-control"
             required
-          />
+          >
+            <option value="">Select an option</option>
+            {argoEnvOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="form-group">
           <label htmlFor="appFullName">App Full Name:</label>
